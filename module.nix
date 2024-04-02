@@ -25,7 +25,7 @@ in
         after = [ "network.target" "network-online.target" ];
 
         environment = {
-          # lmao I think github-runner writes to HOME/.runner FUCKING CHRIST
+          # lmao I think github-runner writes to HOME/.runner
           HOME = "/var/lib/github-actions-runners/${name}";
         };
 
@@ -69,7 +69,12 @@ in
             )
 
             # clear runner state, except its work dir
+            echo "_______________BEFORE111"
+            ${pkgs.eza}/bin/eza --tree --level 3 -al $STATE_DIRECTORY/
+            echo "_______________BEFORE"
             find "$STATE_DIRECTORY/" -mindepth 1 -not -path "$STATE_DIRECTORY/work" -delete
+            echo "_______________AFTER"
+            ${pkgs.eza}/bin/eza --tree --level 3 -al $STATE_DIRECTORY/
             
             ${cfg.package}/bin/Runner.Listener configure "''${args[@]}"
           '');
