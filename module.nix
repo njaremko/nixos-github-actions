@@ -21,8 +21,8 @@ in
       nameValuePair svcName {
         description = "github-actions-runner service template";
         wantedBy = [ "multi-user.target" ];
-        wants = [ "network-online.target" ];
-        after = [ "network.target" "network-online.target" ];
+        wants = [ "network-online.target" ] ++ config.dependsOn;
+        after = [ "network.target" "network-online.target" ] ++ config.dependsOn;
 
         environment = {
           # lmao I think github-runner writes to HOME/.runner
