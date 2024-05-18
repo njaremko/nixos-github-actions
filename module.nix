@@ -60,7 +60,7 @@ in
               --work "$STATE_DIRECTORY/work"
               --url ${escapeShellArg cfg.url}
               --labels ${escapeShellArg (concatStringsSep "," cfg.extraLabels)}
-              --pat "$token"
+              --token "$token"
               ${optionalString (name != null ) "--name ${escapeShellArg name}"}
               ${optionalString cfg.replace "--replace"}
               ${optionalString (cfg.runnerGroup != null) "--runnergroup ${escapeShellArg cfg.runnerGroup}"}
