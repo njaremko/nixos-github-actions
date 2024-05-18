@@ -132,6 +132,15 @@ with lib;
           default = [ ];
         };
 
+        dependsOn = mkOption {
+          type = types.listOf types.str;
+          description = mdDoc ''
+            List of services to depend on
+          '';
+          example = literalExpression ''[ "nixos" ]'';
+          default = [ ];
+        };
+
         noDefaultLabels = mkOption {
           type = types.bool;
           description = mdDoc ''
